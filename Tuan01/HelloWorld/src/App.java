@@ -1,19 +1,23 @@
-import java.util.Scanner;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 
 public class App {
-    private static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) {
-        int age;
-        String name;
-        System.out.println("Hello, World!");
-        System.out.println("Input your name: ");
-        name = sc.nextLine();
-        System.out.println("Input you age: ");
-        age = sc.nextInt();
-        if (age < 18)
-            System.out.println("Sorry you don't grow enough");
-        else
-            System.out.println("Hello " + name);
+        InputStream istr = System.in;
+        OutputStream ostr = System.out;        
+        while (true) {
+            System.out.println("Input your age: ");
+            try {
+                int age = istr.read();
+                if( age < 18 ) System.out.println("You aren't enough 18 ages");
+                
+                else ostr.write(age);                    
+        } catch (IOException ioe) {
+                System.out.println(ioe);
+            }
+        }
+        
     }
 }
